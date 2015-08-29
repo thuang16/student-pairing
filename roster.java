@@ -144,9 +144,10 @@ public String name()
 //eg. if there are 21 students going to groups of 4, there would be 4 groups of 4 and 2 groups of 3
 public void pair(int num)
 {
+  read();
   if(num <= students.size())
   {
-  read();
+  
   int endNum1 = 0;
   int endNum2 = 0;
   list = 1;
