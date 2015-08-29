@@ -1,0 +1,13 @@
+public class groupingDriver
+{
+  public static void main(String args [])
+  {
+    menu start = new menu();
+  System.out.println("Hi, what would you like to do?");
+  System.out.println("type \"add\" to add students, \"drop\" to drop students, \"view\" to see all current students, or \"group\" to organize students into groups.");
+  while(!start.run(kb.nextLine()));
+  {
+    System.out.println("please enter a valid comand");
+  start.run(kb.nextLine);
+              }
+  }

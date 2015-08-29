@@ -1,0 +1,243 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Random;
+public class roster
+{
+  //declarations
+  ArrayList<String> students = new ArrayList<String>();
+   boolean check;
+   boolean deleted;
+   int counter;
+   int list;
+   int randNum;
+
+// The name of the file to open.
+       String fileName = "students.txt";
+
+        // This will reference one line at a time
+        String line = null;
+        
+//checks if file is empty
+public boolean emptyCheck()
+{
+        File file = new File(fileName);
+          if (file.length() == 0)
+  return true;
+return false;
+}
+
+public int num()
+{
+  read();
+  return students.size();
+}
+
+//loads the students names from the text file to the students arraylist
+public void read()
+{
+  delete("");
+    students = new ArrayList<String>();
+        try {
+ 
+            FileReader fileReader = 
+                new FileReader(fileName);
+
+            BufferedReader bufferedReader = 
+                new BufferedReader(fileReader);
+
+            while((line = bufferedReader.readLine()) != null) {
+                students.add(line);
+            }    
+
+            bufferedReader.close();            
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                "Unable to open file '" + 
+                fileName + "'");                
+        }
+        catch(IOException ex) {
+            System.out.println(
+                "Error reading file '" 
+                + fileName + "'");                   
+        }
+}
+//adds students to the text file
+public void write(String name)
+{
+  try {
+// the true turns it into append mode
+           FileWriter fileWriter =
+                new FileWriter(fileName, true);
+           
+          BufferedWriter bufferedWriter =
+             new BufferedWriter(fileWriter);
+
+          if(!emptyCheck())
+           bufferedWriter.newLine();
+            bufferedWriter.write(name);
+  
+
+            bufferedWriter.close();
+        }
+        catch(IOException ex) {
+            System.out.println(
+                "Error writing to file '"
+                + fileName + "'");
+        }
+}
+public void show()
+{
+    read();
+  for (String name: students)
+    {
+      System.out.println(name);
+    }
+  System.out.println("There are " + students.size() + " students");
+}
+//deletes students from the text file by copying all names except the one being deleteed to a temp file
+// then swaps the temp with the actual file
+public boolean delete(String name)
+{
+  deleted = false;
+  try{
+File inputFile = new File(fileName);
+File tempFile = new File("temp.txt");
+
+BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+String currentLine;
+
+while((currentLine = reader.readLine()) != null) {
+    if(currentLine.equals(name))
+    {
+     deleted = true;
+      continue;
+    }
+    writer.write(currentLine);
+    writer.newLine();
+}
+writer.close(); 
+reader.close(); 
+tempFile.renameTo(inputFile);
+  }
+        catch(IOException ex) {
+            System.out.println(
+                "Error deleting");
+        }
+        
+return deleted;
+}
+// returns a random name from the array then removes it from the array
+public String name()
+{
+  String temp;
+  randNum = (int)(Math.random() * students.size());
+  temp = students.get(randNum);
+  students.remove(randNum);
+  return temp;
+}
+
+//pairs the students into desired pairs
+//if remainders exist, tries to even the last two groups, 
+//eg. if there are 21 students going to groups of 4, there would be 4 groups of 4 and 2 groups of 3
+public void pair(int num)
+{
+  if(num <= students.size())
+  {
+  read();
+  int endNum1 = 0;
+  int endNum2 = 0;
+  list = 1;
+  counter = num;
+  while(students.size() >= num*2 || counter != 0 || students.size() <= num)
+  {
+    if(counter == num)
+    {
+    System.out.print("Group " + list + ": " + name());
+    list++;
+      counter--;
+  }
+    else if (counter == 0)
+    {
+      if(students.size() > 0)
+      {
+      System.out.println("");
+      counter = num;
+      }
+    }
+    
+    else if (counter == 1)
+    {
+      System.out.print(" and " + name());
+    counter--;
+    }
+    else
+    {
+      System.out.print(", " + name());
+      counter--;
+    }
+}
+  System.out.println("");
+  endNum1 = students.size()/2;
+  endNum2 = students.size() - endNum1;
+  counter = endNum1;
+  
+  while(counter > 0)
+  {
+    if(counter == endNum1)
+    {
+    System.out.print("Group " + list + ": " + name());
+    list++;
+      counter--;
+  }
+ 
+    else if (counter == 1)
+    {
+      System.out.print(" and " + name());
+    counter--;
+    }
+    else
+    {
+      System.out.print(", " + name());
+      counter--;
+    }
+  }
+  counter = endNum2;
+    System.out.println("");
+ while(counter > 0)
+  {
+    if(counter == endNum2)
+    {
+    System.out.print("Group " + list + ": " + name());
+      counter--;
+  }
+ 
+    else if (counter == 1)
+    {
+      System.out.print(" and " + name());
+    counter--;
+    }
+    else
+    {
+      System.out.print(", " + name());
+      counter--;
+    }
+  }
+}
+  else
+    System.out.println("There are not enough students");
+}
+
+
+
+//public void test()
+//{
+//  System.out.println(students.get(0));
+// System.out.println(students.get(1));
+// System.out.println(students.get(2));
+// System.out.println(students.get(3));
+//}
+
+}

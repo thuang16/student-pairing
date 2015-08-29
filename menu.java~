@@ -1,0 +1,54 @@
+import java.util.*;
+public class pairing{
+  public static void main(String args [])
+  {
+    roster toast = new roster();
+    String response;
+    Scanner kb = new Scanner(System.in);
+    Boolean end = false;
+    
+    System.out.println("Hi, what would you like to do?");
+    System.out.println("type \"add\" to add students, \"drop\" to drop students, \"view\" to see all current students, or \"group\" to organize students into groups.");
+    response = kb.nextLine();
+    if (response.equals("add"))
+    {
+      while (!end)
+      {
+        System.out.println("please type in the student's name then press enter.");
+        System.out.println("type \"end\" when finished adding students.");
+        response = kb.nextLine();
+        if (response.equals("end"))
+          end = true;
+        else
+           toast.write(response);
+      }
+    }
+    else if(response.equals("view"))
+    {
+      toast.show();
+  }
+    else if(response.equals("drop"))
+    {
+    while (!end)
+      {
+        System.out.println("please type in the student's name then press enter.");
+        System.out.println("type \"end\" when finished dropping students.");
+        response = kb.nextLine();
+        if (response.equals("end"))
+          end = true;
+        else
+        {
+           if(toast.delete(response))
+        System.out.println("deleted");
+          else
+          System.out.println("name not found");
+        }
+      }
+    }
+    else if (response.equals("group"))
+               {
+      System.out.println("How many students per group?");
+        toast.pair(kb.nextInt());
+    }
+}
+}
