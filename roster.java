@@ -36,6 +36,9 @@ public int num()
 public void read()
 {
   delete("");
+  //delete("11");
+  //delete("12");
+  //delete("10");
     students = new ArrayList<String>();
         try {
  
@@ -147,12 +150,9 @@ public void pair(int num)
   read();
   if(num <= students.size())
   {
-  
-  int endNum1 = 0;
-  int endNum2 = 0;
   list = 1;
   counter = num;
-  while(students.size() >= num*2 || counter != 0 || students.size() <= num)
+  while(students.size() > 0)
   {
     if(counter == num)
     {
@@ -180,56 +180,59 @@ public void pair(int num)
       counter--;
     }
 }
-  System.out.println("");
-  endNum1 = students.size()/2;
-  endNum2 = students.size() - endNum1;
-  counter = endNum1;
-  
-  while(counter > 0)
-  {
-    if(counter == endNum1)
-    {
-    System.out.print("Group " + list + ": " + name());
-    list++;
-      counter--;
   }
- 
-    else if (counter == 1)
-    {
-      System.out.print(" and " + name());
-    counter--;
-    }
-    else
-    {
-      System.out.print(", " + name());
-      counter--;
-    }
-  }
-  counter = endNum2;
-    System.out.println("");
- while(counter > 0)
-  {
-    if(counter == endNum2)
-    {
-    System.out.print("Group " + list + ": " + name());
-      counter--;
-  }
- 
-    else if (counter == 1)
-    {
-      System.out.print(" and " + name());
-    counter--;
-    }
-    else
-    {
-      System.out.print(", " + name());
-      counter--;
-    }
-  }
-}
-  else
+     else
     System.out.println("There are not enough students");
-}
+  }
+//  System.out.println("");
+//  endNum1 = students.size()/2;
+//  endNum2 = students.size() - endNum1;
+//  counter = endNum1;
+//  
+//  while(counter > 0)
+//  {
+//    if(counter == endNum1)
+//    {
+//    System.out.print("Group " + list + ": " + name());
+//    list++;
+//      counter--;
+//  }
+// 
+//    else if (counter == 1)
+//    {
+//      System.out.print(" and " + name());
+//    counter--;
+//    }
+//    else
+//    {
+//      System.out.print(", " + name());
+//      counter--;
+//    }
+//  }
+//  counter = endNum2;
+//    System.out.println("");
+// while(counter > 0)
+//  {
+//    if(counter == endNum2)
+//    {
+//    System.out.print("Group " + list + ": " + name());
+//      counter--;
+//  }
+// 
+//    else if (counter == 1)
+//    {
+//      System.out.print(" and " + name());
+//    counter--;
+//    }
+//    else
+//    {
+//      System.out.print(", " + name());
+//      counter--;
+//    }
+//  }
+//  }
+
+
 
 
 

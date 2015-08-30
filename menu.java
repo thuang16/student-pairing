@@ -7,6 +7,7 @@ public class menu{
     
     //chooses what to do between adding/dropping students, seeing list of students, and grouping students
     public int run(String response){
+      end = false;
     if (response.equals("add"))
     {
       while (!end)
@@ -26,8 +27,8 @@ public class menu{
     else if(response.equals("view"))
     {
       toast.show();
-      System.out.println("type \"menu\" to return to menu.");
-      if (kb.nextLine().equals("menu"))
+//      System.out.println("type \"menu\" to return to menu.");
+//      if (kb.nextLine().equals("menu"))
         return 1;
   }
     else if(response.equals("drop"))
@@ -45,7 +46,9 @@ public class menu{
         else
         {
            if(toast.delete(response))
+           {
         System.out.println("deleted");
+           }
           else
           System.out.println("name not found");
         }

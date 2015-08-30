@@ -13,6 +13,7 @@ public class groupingDriver
   {
     System.out.println("type \"add\" to add students, \"drop\" to drop students, \"view\" to see all current students, or \"group\" to organize students into groups.");
   valid = start.run(kb.nextLine());
+ 
   //loops back if an invalid command is entered
   while (valid == 0)
   {
